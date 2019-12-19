@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-
+import torch.nn.functional as F
 import numpy as np
 
 class Interpolator(nn.Module):
@@ -54,7 +54,7 @@ class Interpolator(nn.Module):
         # no groups (for speed with current pytorch impl.) and no bias
         return F.conv_transpose2d(x, self.weight, stride=self.rate)   
     
-class Decoder(nn.Module):
+class ConvDecoder(nn.Module):
     """
     FCN-32s like fully convolutional decoder network
     """
